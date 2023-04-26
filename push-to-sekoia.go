@@ -10,6 +10,7 @@ import (
 )
 
 func main() {
+        // Function to put the STDIN in a var called str
         stdin, err := io.ReadAll(os.Stdin)
 
         if err != nil {
@@ -17,7 +18,8 @@ func main() {
         }
         str := string(stdin) 
         fmt.Println(strings.TrimSuffix(str, "\n")) 
-
+        
+        // Fuction to make a POST request 
         url := "https://intake.sekoia.io/plain" 
 
         var data = []byte(str) 
