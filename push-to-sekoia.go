@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"bytes"
-	"crypto/tls"
 	"fmt"
 	"io"
 	"net/http"
@@ -25,11 +24,9 @@ func main() {
 
 	// Function to put the STDIN in a var called str
 	loglign, err := receivedLog(os.Stdin)
-
 	if err != nil {
 		panic(err)
 	}
-	//fmt.Println(strings.TrimSuffix(str, "\n"))
 
 	// Fuction to make a POST request
 	url := "https://intake.sekoia.io/plain"
@@ -39,11 +36,7 @@ func main() {
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Accept-Encoding", "*")
 
-	tr := &http.Transport{
-		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
-	}
-
-	client := &http.Client{Transport: tr}
+	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
 		fmt.Println("panic")
